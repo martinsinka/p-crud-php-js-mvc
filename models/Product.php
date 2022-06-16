@@ -1,5 +1,7 @@
 <?php
 
+require_once("../config/connection.php");
+
 class Product extends ConnectionDB
 {
     /**

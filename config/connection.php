@@ -20,7 +20,7 @@ class ConnectionDB
      */
     public function setNames()
     {
-        return $this->dbh->query("SET NAMES 'utf8'-");
+        return $this->dbh->query("SET NAMES 'utf8'");
     }
 }
 
