@@ -48,7 +48,7 @@
     <!-- ########## START: LEFT PANEL ########## -->
     <div class="br-logo"><a href=""><span>[</span>CRUD<span>]</span></a></div>
     <div class="br-sideleft overflow-y-auto">
-      <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
+      <label class="sidebar-label pd-x-15 mg-t-20">Navigacion</label>
       <div class="br-sideleft-menu">
         <a href="../Home/" class="br-menu-link">
           <div class="br-menu-item">
