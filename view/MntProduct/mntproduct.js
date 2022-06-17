@@ -56,4 +56,12 @@ $(document).ready(function(){
 	}).DataTable();
 });
 
+function edit(productId){
+    console.log(productId);
+}
+
+function remove(productId){
+    console.log(productId);
+}
+
 init();

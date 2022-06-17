@@ -13,7 +13,7 @@ switch($_GET["op"]){
             $sub_array = array();
             $sub_array[] = $row["prod_nom"];
             $sub_array[] = '<button type="button" onClick="edit('.$row["prod_id"].');" id="'.$row["prod_id"].'" class="btn btn-outline-primary btn-icon"><div><i class="fa fa-edit"></i></div></button>';
-            $sub_array[] = '<button type="button" onClick="delete('.$row["prod_id"].');" id="'.$row["prod_id"].'" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></button>';
+            $sub_array[] = '<button type="button" onClick="remove('.$row["prod_id"].');" id="'.$row["prod_id"].'" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></button>';
             $data[] = $sub_array;
         }
 
@@ -26,6 +26,10 @@ switch($_GET["op"]){
 
         // PARA DATATABLE RESPONDER EN JSON
         echo json_encode($response);
+
+        break;
+
+    case "saveAndEdit":
 
         break;
 }
