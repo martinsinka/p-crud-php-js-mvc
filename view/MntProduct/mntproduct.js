@@ -61,7 +61,38 @@ function edit(productId){
 }
 
 function remove(productId){
-    console.log(productId);
+    Swal.fire({
+        title: "CRUD",
+        text: "Esta seguro de eliminar el registro?",
+        icon: "error",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        reverseButtons: true
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.post("../../controller/product.php?op=remove", {productId: productId}, function(data){
+
+            });
+            $('#product_data').DataTable( ).ajax.reload(null, false);
+            Swal.fire(
+                'Eliminado!',
+                'El registro se elimino correctamente.',
+                'success'
+            )
+        }
+    })
+    
+    
+
+    
 }
+
+($document).on("click", "#btnNuevo", function(){
+    $('#mdltitulo').html('Nuevo Registro');
+    $('#modalMantenimiento').modal('show');
+});
 
 init();

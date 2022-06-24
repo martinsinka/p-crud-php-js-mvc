@@ -48,7 +48,7 @@ class Product extends ConnectionDB
 
         $sql = "UPDATE tm_producto
             SET
-                est = 0,
+                prod_est = 0,
                 prod_fech_elim = now()
             WHERE
                 prod_id = :productId";
