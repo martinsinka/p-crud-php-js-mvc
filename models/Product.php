@@ -70,7 +70,8 @@ class Product extends ConnectionDB
                 VALUES (NULL, :productName , now(), NULL, NULL, '1');";
         $sql = $connection->prepare($sql);
         $sql->bindValue(':productName', $productName);
-        $sql->execute();return $sql->fetchAll();
+        $sql->execute();
+        return $sql->fetchAll();
     }
 
     /**

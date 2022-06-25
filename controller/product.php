@@ -30,15 +30,13 @@ switch($_GET["op"]){
         break;
 
     case "saveAndEdit":
-        $productId = $_POST["productId"];
-        
-        if(empty($productId)){
-            $result = $product->getProductById($productId);
+        $result = $product->getProductById($_POST["productId"]);
+        if(empty($_POST["productId"])){
             if(is_array($result) and count($result) == 0){
                 $product->insertProduct($_POST["productName"]);
-            }else{
-                $product->updateProduct($productId, $_POST["productName"]);
             }
+        }else{
+            $product->updateProduct($_POST["productId"], $_POST["productName"]);
         }
         break;
     

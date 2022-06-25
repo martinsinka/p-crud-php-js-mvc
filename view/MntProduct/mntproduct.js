@@ -1,7 +1,9 @@
 var  tabla;
 
 function init(){
-
+    $("#producto_form").on("submit", function(e){ 
+        saveAndEdit(e);
+    })
 }
 
 $(document).ready(function(){
@@ -56,6 +58,29 @@ $(document).ready(function(){
 	}).DataTable();
 });
 
+function saveAndEdit(e){
+    e.preventDefault(); // Evita que se guarde 2 veces para
+    var formData = new FormData($("#producto_form")[0]);
+    $.ajax({
+        url: "../../controller/product.php?op=saveAndEdit",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data){
+            
+            $("#producto_form")[0].reset();
+            $("#modalMantenimiento").modal('hide');
+            $("#product_data").DataTable().ajax.reload();
+
+            Swal.fire(
+                "Registro! ",
+                "Se registro correctamente.",
+                "success"
+            );
+        }
+    })
+}
 function edit(productId){
     console.log(productId);
 }
@@ -90,8 +115,9 @@ function remove(productId){
     
 }
 
-($document).on("click", "#btnNuevo", function(){
-    $('#mdltitulo').html('Nuevo Registro');
+$(document).on("click", "#btnNuevo", function(){
+    //console.log("click");
+    $('#mdlTitulo').html('Nuevo Registro');
     $('#modalMantenimiento').modal('show');
 });
 
