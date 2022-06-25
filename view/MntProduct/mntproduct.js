@@ -99,14 +99,15 @@ function remove(productId){
     }).then((result) => {
         if(result.isConfirmed){
             $.post("../../controller/product.php?op=remove", {productId: productId}, function(data){
-
+                $('#product_data').DataTable().ajax.reload();
             });
-            $('#product_data').DataTable( ).ajax.reload(null, false);
+            
+
             Swal.fire(
                 'Eliminado!',
                 'El registro se elimino correctamente.',
                 'success'
-            )
+            );
         }
     })
     
