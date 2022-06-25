@@ -43,12 +43,13 @@ switch($_GET["op"]){
     case "show":
         $productId = $_POST["productId"];
         $result = $product->getProductById($productId);
-        var_dump($result); //////////////////
+        //var_dump($result); //////////////////
         if(is_array($result) and count($result) > 0){
             foreach($result as $row){
                 $output["productId"] = $row["prod_id"];
                 $output["productName"] = $row["prod_nom"];
             }
+            echo json_encode($output);
         }
         break;
 
