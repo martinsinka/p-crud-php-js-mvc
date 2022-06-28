@@ -61,15 +61,16 @@ class Product extends ConnectionDB
     /**
      * Creacion de productos
      */
-    public function insertProduct($productName)
+    public function insertProduct($productName, $productDesc)
     {
         $connection = parent::connection();
         parent::setNames();
 
-        $sql = "INSERT INTO tm_producto (prod_id, prod_nom, prod_fech_crea, prod_fech_modi, prod_fech_elim, prod_est)
-                VALUES (NULL, :productName , now(), NULL, NULL, '1');";
+        $sql = "INSERT INTO tm_producto (prod_id, prod_nom, prod_desc, prod_fech_crea, prod_fech_modi, prod_fech_elim, prod_est)
+                VALUES (NULL, :productName , :productDesc, now(), NULL, NULL, '1');";
         $sql = $connection->prepare($sql);
         $sql->bindValue(':productName', $productName);
+        $sql->bindValue(':productDesc', $productDesc);
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -77,7 +78,7 @@ class Product extends ConnectionDB
     /**
      * Modificacion de productos
      */
-    public function updateProduct($productId, $productName)
+    public function updateProduct($productId, $productName, $productDesc)
     {
         $connection = parent::connection();
         parent::setNames();
@@ -85,11 +86,13 @@ class Product extends ConnectionDB
         $sql = "UPDATE tm_producto
                 SET
                     prod_nom = :productName,
+                    prod_desc = :productDesc,
                     prod_fech_modi = now()
                 WHERE
                     prod_id = :productId";
         $sql = $connection->prepare($sql);
         $sql->bindValue(':productName', $productName);
+        $sql->bindValue(':productDesc', $productDesc);
         $sql->bindValue(':productId', $productId);
         $sql->execute();
         return $sql->fetchAll();

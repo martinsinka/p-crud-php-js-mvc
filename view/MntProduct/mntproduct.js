@@ -86,8 +86,10 @@ function edit(productId){
 
     $.post("../../controller/product.php?op=show", { productId: productId }, function (data){
         data = JSON.parse(data);
+        console.log(data);
         $('#productId').val(data.productId);
         $('#productName').val(data.productName);
+        $('#productDesc').val(data.productDesc);
     });
     $('#modalMantenimiento').modal('show');
 

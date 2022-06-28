@@ -12,6 +12,7 @@ switch($_GET["op"]){
         foreach($products as $row){
             $sub_array = array();
             $sub_array[] = $row["prod_nom"];
+            $sub_array[] = $row["prod_desc"];
             $sub_array[] = '<button type="button" onClick="edit('.$row["prod_id"].');" id="'.$row["prod_id"].'" class="btn btn-outline-primary btn-icon"><div><i class="fa fa-edit"></i></div></button>';
             $sub_array[] = '<button type="button" onClick="remove('.$row["prod_id"].');" id="'.$row["prod_id"].'" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></button>';
             $data[] = $sub_array;
@@ -33,10 +34,10 @@ switch($_GET["op"]){
         $result = $product->getProductById($_POST["productId"]);
         if(empty($_POST["productId"])){
             if(is_array($result) and count($result) == 0){
-                $product->insertProduct($_POST["productName"]);
+                $product->insertProduct($_POST["productName"], $_POST["productDesc"]);
             }
         }else{
-            $product->updateProduct($_POST["productId"], $_POST["productName"]);
+            $product->updateProduct($_POST["productId"], $_POST["productName"], $_POST["productDesc"]);
         }
         break;
     
@@ -48,7 +49,9 @@ switch($_GET["op"]){
             foreach($result as $row){
                 $output["productId"] = $row["prod_id"];
                 $output["productName"] = $row["prod_nom"];
+                $output["productDesc"] = $row["prod_desc"];
             }
+            
             echo json_encode($output);
         }
         break;
